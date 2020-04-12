@@ -95,7 +95,6 @@ class Grid:
         """
         Create next generations of the grid based on the intermediary state of the grid and input count provided by user
         :param
-            temp_grid (list[list[int]]): previous state of the grid
             curr_n (int): generations to move forward based on user input
             n (int): total generations count
         :return:
