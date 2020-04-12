@@ -22,7 +22,7 @@ Cloning the repository will get you a copy of the project up and running on your
 
 ### Prerequisites
 * python 3.x
-* python module termcolor to view the live cells movement
+* python module termcolor to view the live cells movement in color
 
 ### Deployment Steps
 1. Execute `gameoflife.py` on command line for best output
