@@ -15,7 +15,7 @@ Cloning the repository will get you a copy of the project up and running on your
 - `https://github.com/ypatankar/gameoflife.git`
 
 ### Contents
-* `gameoflife.py` : Take a grid as input and performs evolutionary transitions on the cell based on the rules defined in the docstring, It contains Grid class and associated game operations.
+* `gameoflife.py` : Take a grid as input and performs evolutionary transitions on the cell based on the rules defined in the docstring. It contains Grid class and associated game operations.
 
 ### Demo for 25x25 grid for 50 generations
 ![Alt Text](https://github.com/ypatankar/gameoflife/blob/master/GameOfLife_50_gens.gif)
