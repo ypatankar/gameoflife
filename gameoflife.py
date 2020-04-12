@@ -1,7 +1,6 @@
 import time
 import sys
 import os
-from termcolor import colored
 import ast
 
 
@@ -63,8 +62,6 @@ class Grid:
                 else:
                     self.grid[i][j] = 0
 
-        return self.grid
-
     def get_neighbor_count(self, i, j):
         """
         An utility method to get neighbor count of a cell
@@ -94,7 +91,7 @@ class Grid:
 
         return n_count
 
-    def create_generations(self, temp_grid, curr_n, n):
+    def create_generations(self, curr_n, n):
         """
         Create next generations of the grid based on the intermediary state of the grid and input count provided by user
         :param
@@ -102,20 +99,19 @@ class Grid:
             curr_n (int): generations to move forward based on user input
             n (int): total generations count
         :return:
-            temp_grid (list[list[int]]) : updated temporary grid
+            None
         """
+
         for i in range(1, curr_n+1):
             # call play_game() method for updating the grid for each generation
-            temp_grid = self.play_game()
-            os.system('cls')
-            print("{} generations(s):".format(n + i - curr_n))
-            formatted_grid = '\n'.join('  '.join('{}'.format(colored(item, 'green')) if item else '{}'.format(item)
-                                           for item in row) for row in temp_grid)
+            self.play_game()
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print("{} generations(s): ".format(n + i - curr_n))
+            print()
+            formatted_grid = '\n'.join('  '.join('{}'.format(item) for item in row) for row in self.grid)
             sys.stdout.write("\r" + formatted_grid)
             time.sleep(0.4)
             sys.stdout.flush()
-
-        return temp_grid
 
 
 if __name__ == '__main__':
@@ -133,10 +129,9 @@ if __name__ == '__main__':
     if not input_grid:
         exit()
 
-    os.system('cls')
+    os.system('cls' if os.name == 'nt' else 'clear')
     print("This is the input grid:")
-    print('\n'.join('  '.join('{}'.format(colored(item, 'green')) if item else '{}'.format(item)
-                                         for item in row) for row in input_grid))
+    print('\n'.join('  '.join('{}'.format(item) for item in row) for row in input_grid))
 
     # get the dimensions of the grid
     r = len(input_grid)
@@ -148,10 +143,11 @@ if __name__ == '__main__':
     # total count of generations
     gen_count = 0
     user_input = ''
+
     while user_input != 'q':
         print('\n')
         # get user input for the number of generations to be created
-        user_input = input('Enter the number of generations to create or q to quit:')
+        user_input = input("Enter the number of generation(s) to create from this state onwards or 'q' to quit: ")
 
         if user_input == 'q':
             break
@@ -166,4 +162,4 @@ if __name__ == '__main__':
                 # increment the total generations count
                 gen_count += input_count
                 # call the create_generations() method
-                input_grid = game_of_life.create_generations(input_grid, input_count, gen_count)
+                game_of_life.create_generations(input_count, gen_count)
